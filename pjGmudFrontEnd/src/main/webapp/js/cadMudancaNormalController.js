@@ -3,7 +3,8 @@
     listaClientesAfetados(0);
     listaAprovador(0);
     listaResponsavelAtividade(0);
-	listaCicloUpdateCliente ();
+	listaGrupoClientes( );
+	listaClienteAlias( );
 	
 	inlineCheckbox2.addEventListener('click', ()=>{
 
@@ -619,6 +620,34 @@ function listaClientesAfetados(idClientes_af){
 /*                                                                */
 /*                                                                */
 /******************************************************************/
+function listaClienteAlias( ){
+	
+	let urlBase = document.getElementById('urlAPI').value;
+	let urlAPI  = urlBase + 'listaClientesAfetadosAlias';
+		
+	$.ajax({
+		method : "GET",
+		url : urlAPI,
+		contentType : "application/json; charset=utf-8",
+		success : function(json) {
+		    var optionAlias = '<option value="" disabled selected>[-Selecione-]</option>';
+
+			for(var p = 0; p < json.length; p++){
+				optionAlias += '<option value=' + json[p].id_clientes_af + '>' + json[p].alias + '</option>';
+			}
+			$("#selectclienteAlias").html(optionAlias).show();    			
+		}
+	}).fail(function(xhr ) {
+		// alert("Erro ao Listar informacoes da Categoria Padrão: " + xhr.responseText);
+		MensagemConfimacao( "error", "Listar de Clientes Afetados", "Erro ao Listar Clientes Afetados: " + xhr.responseText) ;
+	});		
+}
+
+/******************************************************************/
+/*                                                                */
+/*                                                                */
+/******************************************************************/
+/*
 function listaClientesAfetadosPorCiclo( cicloUp ){
 	 let urlBase = document.getElementById('urlAPI').value;
 	 let urlAPI  = urlBase + 'clientesAfetadosPorCiclo/' + cicloUp;
@@ -649,34 +678,71 @@ function listaClientesAfetadosPorCiclo( cicloUp ){
 		MensagemConfimacao( "error", "Clientes Afetados", "Erro ao Listar Clientes Afetados: " + xhr.responseText );
 	});		
 }
+*/
 
 /******************************************************************/
 /*                                                                */
 /*                                                                */
 /******************************************************************/
-function listaCicloUpdateCliente (){
-	 let urlBase = document.getElementById('urlAPI').value;
-	 let urlAPI  = urlBase + 'listaCicloUpdate';
+function listaGrupoClientes( ){
 	
+	let urlBase = document.getElementById('urlAPI').value;
+	let urlAPI  = urlBase + 'listaGrupoCliente';
+		
 	$.ajax({
 		method : "GET",
-//		url : "http://localhost:8090/PortalMudanca/listaClientesAfetados",
 		url : urlAPI,
 		contentType : "application/json; charset=utf-8",
 		success : function(json) {
 		    var option = '<option value="" disabled selected>[-Selecione-]</option>';
 
 			for(var p = 0; p < json.length; p++){
-				option += '<option>' + json[p] + '</option>';
+				option += '<option value=' + json[p].id_grupo_cliente + '>' + json[p].nome_grupo + '</option>';
 			}
-			$("#selectCicloUpdateCliente").html(option).show();  
+			$("#grupoCliente").html(option).show();  
 			
 		}
 	}).fail(function(xhr ) {
-		// alert("Erro ao Listar Clientes Afetados: " + xhr.responseText);
-		MensagemConfimacao( "error", "Clientes Afetados", "Erro ao Listar Clientes Afetados: " + xhr.responseText );
+		// alert("Erro ao Listar informacoes da Categoria Padrão: " + xhr.responseText);
+		MensagemConfimacao( "error", "Listar informacoes de Grupos", "Erro ao Listar informacoes de Grupos: " + xhr.responseText) ;
 	});		
 }
+
+/******************************************************************/
+/*                                                                */
+/*                                                                */
+/******************************************************************/
+async function listaClientesAfetadosPorGrupo( id ){
+
+  try {
+	  let urlBase = document.getElementById('urlAPI').value;
+	  let urlAPI  = urlBase + 'listaGrupoClientePorGrupo/' + id;
+	  const listaGruposCliente = await fetch(urlAPI).then(response => response.json());
+	  if( listaGruposCliente === null )throw listaGruposCliente;
+	  else{
+		
+		mudancaNormal.limparListaClientesAfetados();		
+		for(let i = 0; i < listaGruposCliente.length; i++){
+			
+			let clientesAfetado = {};
+			clientesAfetado.idCliAfetados = mudancaNormal.idCliAfetados;
+			clientesAfetado.idClienteAfet = listaGruposCliente[i].clientesAfetados.id_clientes_af;
+			clientesAfetado.clienteAfet   = listaGruposCliente[i].clientesAfetados.nome_cliente;
+			clientesAfetado.nomeGrupo     = listaGruposCliente[i].grupoCliente.nome_grupo;
+			clientesAfetado.alias         = listaGruposCliente[i].clientesAfetados.alias;
+
+			mudancaNormal.adicionarClientesAfetado(clientesAfetado);
+		}
+		
+		mudancaNormal.listaTabelaClientesAfetado( mudancaNormal.listaClientesAfetados );
+	  }
+	} catch (error) {
+//	     hideLoading();
+	     MensagemConfimacao( "warning", "Manutenção Cat. Padrão",  error );
+	}
+	
+}
+
 
 /******************************************************************/
 /*                                                                */
@@ -695,12 +761,39 @@ function funcSelectClientesAfetados() {
 		success     : function(response) {
 						$("#idClienteAfetado"  ).val( response.id_clientes_af );
 						$("#nomeClienteAfetado").val( response.nome_cliente   );
+						$("#nomeClienteAlias"  ).val( response.alias          );
+   	   }
+  	 }).fail(function( xhr ){
+  			MensagemConfimacao( "error", "Clientes Afetados", "Erro ao Selecionar Clientes Afetados: " + xhr.responseText );
+  	 }); 
+}
+
+/******************************************************************/
+/*                                                                */
+/*                                                                */
+/******************************************************************/
+function funcSelectClientesAfetadosAlias() {
+	 var idClientesAfetados = selectclienteAlias.options[selectclienteAlias.selectedIndex].value;
+	 let urlBase = document.getElementById('urlAPI').value;
+	 let urlAPI  = urlBase + 'obterClientesAfetadosPorId/';
+
+	 $.ajax({ 			
+		method      : "GET",
+//		url         : "http://localhost:8090/PortalMudanca/obterClientesAfetadosPorId/" + idClientesAfetados,
+		url         : urlAPI + idClientesAfetados,
+		contentType : "application/json; charset=utf-8",
+		success     : function(response) {
+						$("#idClienteAfetado"  ).val( response.id_clientes_af );
+						$("#nomeClienteAfetado").val( response.nome_cliente   );
+						$("#nomeClienteAlias"  ).val( response.alias   );
+						
    	   }
   	 }).fail(function( xhr ){
   			//alert("Erro ao Listar Mudanças: " + xhr.responseText); 
 			MensagemConfimacao( "error", "Clientes Afetados", "Erro ao Selecionar Clientes Afetados: " + xhr.responseText );
   	 }); 
 }
+
 
 /******************************************************************/
 /*                                                                */

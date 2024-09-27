@@ -165,7 +165,7 @@
                                           <input type="hidden"  name="urlAPI" id="urlAPI" value="<%=session.getAttribute("urlAPI")%>">
                                           <input type="hidden"  name="UserLogado" id="UserLogado" value="<%=session.getAttribute("usuario")%>">
                                                
-                                          <div class="row">
+                                        <div class="row">
 											<div class="col-sm-12">
 												<div class="card">
 													<div class="card-block">
@@ -256,21 +256,51 @@
 										            </div>
 										        </div>
 										    </div>
-										 </div>
-                                         
+										</div>
 
-                                          
-                                          <!-- ##################################################################################### -->
-                                          <!--          Etapa Plano de execução da Mudança                                           -->
-                                          <!-- ##################################################################################### -->                                                                                
-                                          
-                                               <div class="row">
+
+                                        <!-- ##################################################################################### -->
+                                        <!--          Etapa com info. dos Clientes afetados pela GMUD                              -->
+                                        <!-- ##################################################################################### -->                                                                                                                            
+										<!-- Tabela com as informacoes do Recursos a serem cadastrasdos -->                       
+										<div class="row">
+											<div class="col-sm-12">
+												<!-- Basic Form Inputs card start -->
+												<div class="card">
+													<div class="card-block">
+							                            <h5 class="card-header border-primary">Lista dos Clientes Afetafos pela Mudança</h5><hr><br>
+														<div style="height: 150px; overflow: scroll;">
+															<table class="table table-striped table-hover table-sm table-bordered table-responsive-sm" id="tabelabClienteAfetados">
+																  <thead>
+																    <tr>
+																      <th scope="col">ID  </th>
+																      <th scope="col">Cliente        </th>
+																      <th scope="col">Alias       </th>
+																    </tr>
+																  </thead>
+																<tbody id="tbClienteAfetados">
+							
+																</tbody>
+															</table>
+														</div>
+							
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+                                        <!-- ##################################################################################### -->
+                                        <!--          Etapa Plano de execução da Mudança                                           -->
+                                        <!-- ##################################################################################### -->                                                                                
+                                        <div class="row">
 											<div class="col-sm-12">
 												<div class="card">
 													<div class="card-block">
-                                                              <h5 class="card-header border-primary">Lista de Tarefa</h5><hr><br>
-                                                              <input type="hidden" id="idTarefaAux" readonly="readonly">
-                                                              <input type="hidden" id="idMudancaAux" readonly="readonly">
+                                                        <h5 class="card-header border-primary">Lista de Tarefa</h5><hr><br>
+                                                        <input type="hidden" id="idTarefaAux" readonly="readonly">
+                                                        <input type="hidden" id="idMudancaAux" readonly="readonly">
 													    <div class="form-row">
 															<div class="form-group form-default form-static-label col-md-2 mb-2">
 															     <span  class="font-weight-bold font-italic" style="color: #708090" >ID Responsável Tarefa</span>
@@ -331,11 +361,11 @@
 									                </div>
 											    </div>
 									        </div>
-									     </div>
+									    </div>
 
 											<!-- Tabela com as informacoes do Recursos a serem cadastrasdos -->                       
 										<div class="row">
-											<div class="col-sm-12">
+											 <div class="col-sm-12">
 												<!-- Basic Form Inputs card start -->
 												<div class="card">
 													<div class="card-block">
@@ -362,55 +392,53 @@
 							
 													</div>
 												</div>
-											</div>
-										</div>
+											 </div>
+										  </div>
 										
-                                              <div class="row">
-										 <div class="col-sm-12">
-											<div class="card">
-												<div class="card-block">
-												    <h5 class="card-header border-primary">Report de Conclusão da Mudança.</h5><hr><br>
-	                                                <div class="from-row">
-														<div class="form-group form-default form-static-label col-md-12 mb-12">
-														     <span class="font-weight-bold font-italic" style="color: #708090">Report final</span>
-														     <textarea style="color: #000000" class="form-control" id="reportFinal" name="reportFinal" disabled="disabled" rows="100" ></textarea>
-														</div>
-	                                                </div>
-								                </div>
-										    </div>
-								        </div>
-								     </div> 	
+	                                      <div class="row">
+											 <div class="col-sm-12">
+												<div class="card">
+													<div class="card-block">
+													    <h5 class="card-header border-primary">Report de Conclusão da Mudança.</h5><hr><br>
+		                                                <div class="from-row">
+															<div class="form-group form-default form-static-label col-md-12 mb-12">
+															     <span class="font-weight-bold font-italic" style="color: #708090">Report final</span>
+															     <textarea style="color: #000000" class="form-control" id="reportFinal" name="reportFinal" disabled="disabled" rows="100" ></textarea>
+															</div>
+		                                                </div>
+									                </div>
+											    </div>
+									        </div>
+									      </div> 	
 
-                                     <div class="row">
-										 <div class="col-sm-12">
-											<div class="card">
-												<div class="card-block">
-												    <h5 class="card-header border-primary">Ações pós Atividades</h5><hr><br>
-	                                                <div class="from-row">
-														<div class="form-group form-default form-static-label col-md-12 mb-12">
-														     <span class="font-weight-bold font-italic" style="color: #708090">Plano de Testes</span>
-														     <textarea style="color: #000000" class="form-control" id="planoTestes" name="planoTestes" disabled="disabled" rows="100" ></textarea>
-														</div>
-	                                                </div>
-													<hr>  
-													<br>
-	                                                <div class="from-row">
-														<div class="form-group form-default form-static-label col-md-12 mb-12">
-														     <span class="font-weight-bold font-italic" style="color: #708090">Plano de Retorno</span>
-														     <textarea style="color: #000000" class="form-control" id="planoRetorno" name="planoRetorno" disabled="disabled" rows="100" ></textarea>
-														</div>
-	                                                </div>
-								                </div>
-										    </div>
-								        </div>
-								     </div> 	
+	                                      <div class="row">
+											 <div class="col-sm-12">
+												<div class="card">
+													<div class="card-block">
+													    <h5 class="card-header border-primary">Ações pós Atividades</h5><hr><br>
+		                                                <div class="from-row">
+															<div class="form-group form-default form-static-label col-md-12 mb-12">
+															     <span class="font-weight-bold font-italic" style="color: #708090">Plano de Testes</span>
+															     <textarea style="color: #000000" class="form-control" id="planoTestes" name="planoTestes" disabled="disabled" rows="100" ></textarea>
+															</div>
+		                                                </div>
+														<hr>  
+														<br>
+		                                                <div class="from-row">
+															<div class="form-group form-default form-static-label col-md-12 mb-12">
+															     <span class="font-weight-bold font-italic" style="color: #708090">Plano de Retorno</span>
+															     <textarea style="color: #000000" class="form-control" id="planoRetorno" name="planoRetorno" disabled="disabled" rows="100" ></textarea>
+															</div>
+		                                                </div>
+									                </div>
+											    </div>
+									        </div>
+									      </div> 	
 
-                                          <!-- ##################################################################################### -->
-                                          <!--          Etapa Plano de execução da Mudança                                           -->
-                                          <!-- ##################################################################################### -->                                                                                                                            
-                                          
-                                              
-											<!-- Tabela com as informacoes do Recursos a serem cadastrasdos -->                       
+                                        <!-- ##################################################################################### -->
+                                        <!--          Etapa Plano de execução da Mudança                                           -->
+                                        <!-- ##################################################################################### -->                                                                                                                            
+										<!-- Tabela com as informacoes do Recursos a serem cadastrasdos -->                       
 										<div class="row">
 											<div class="col-sm-12">
 												<!-- Basic Form Inputs card start -->
@@ -437,6 +465,7 @@
 												</div>
 											</div>
 										</div>
+										
                                      </form>
                                  </div>
                               </div>
@@ -812,6 +841,7 @@
             
             let imgcarregar = document.createElement('img');
             imgcarregar.src = getContextPath() +'/imagens/mostrar-propriedade.-48.png';
+            imgcarregar.setAttribute('style', 'cursor:pointer;' );
             imgcarregar.setAttribute('onclick','getTarefa( ' +  tarefas[i].id_atividade_mudanca + ' )');
             td_carregar.appendChild(imgcarregar);
             td_carregar.classList.add('center');

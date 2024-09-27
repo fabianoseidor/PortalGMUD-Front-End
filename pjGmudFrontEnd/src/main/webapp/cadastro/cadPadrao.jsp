@@ -285,34 +285,50 @@
 															<div class="card-block">
 															    <h5 class="card-title">Sessão para seleção dos 'Clientes Afetados'</h5><hr>
 				                                                <div class="form-row">
-																	<div class="form-group form-default form-static-label col-md-6 mb-4">
+																	<div class="form-group form-default form-static-label col-md-4 mb-4">
 																		<span  class="font-weight-bold font-italic" style="color: #708090">Clientes Afetados</span>
 																		<select style="color: #000000" name="selectClientesAfetados" id="selectClientesAfetados" class="form-control" onchange="funcSelectClientesAfetados()">
 																			<option value="" disabled selected>[-Selecione-]</option>
 																		</select> 
 																    </div>
-																	<div class="form-group form-default form-static-label col-md-2 mb-4">
-																		<span  class="font-weight-bold font-italic" style="color: #708090">Ciclo Update Cliente</span>
-																		<select style="color: #000000" name="selectCicloUpdateCliente" id="selectCicloUpdateCliente" class="form-control" onchange="listaClientesAfetadosPorCiclo( this.value )">
+
+																	<div class="form-group form-default form-static-label col-md-4 mb-4">
+																		<span  class="font-weight-bold font-italic" style="color: #708090">Clientes Alias</span>
+																		<select style="color: #000000" name="selectclienteAlias" id="selectclienteAlias" class="form-control" onchange="funcSelectClientesAfetadosAlias()">
 																			<option value="" disabled selected>[-Selecione-]</option>
 																		</select> 
 																    </div>
-															    </div>				                                                
+
+																	<div class="form-group form-default form-static-label col-md-2 mb-4">
+																		<span  class="font-weight-bold font-italic" style="color: #708090">Grupo de Clientes</span>
+																		<select style="color: #000000" name="grupoCliente" id="grupoCliente" class="form-control" onchange="listaClientesAfetadosPorGrupo( this.value )">
+																			<option value="" disabled selected>[-Selecione-]</option>
+																		</select> 
+																    </div>
+															    </div>
+				                                                
 				                                                <div class="form-row">
-																	<div class="form-group form-default form-static-label col-md-6 mb-6">
+																	<div class="form-group form-default form-static-label col-md-4 mb-4">
 																	     <span  class="font-weight-bold font-italic" style="color: #708090" >ID Cliente</span>
 																	     <input style="color: #000000" type="text" name="idClienteAfetado" id="idClienteAfetado" readonly="readonly" class="form-control" value="">
 																	</div>
 				
-																	<div class="form-group form-default form-static-label col-md-6 mb-6">
+																	<div class="form-group form-default form-static-label col-md-4 mb-4">
 																	     <span  class="font-weight-bold font-italic" style="color: #708090" >Cliente</span>
 																	     <input style="color: #000000" type="text" name="nomeClienteAfetado" id="nomeClienteAfetado" readonly="readonly" class="form-control" value="">
 																	</div>
+																	
+																	<div class="form-group form-default form-static-label col-md-4 mb-4">
+																	     <span  class="font-weight-bold font-italic" style="color: #708090" >Cliente Alias</span>
+																	     <input style="color: #000000" type="text" name="nomeClienteAlias" id="nomeClienteAlias" readonly="readonly" class="form-control" value="">
+																	</div>
+																	
+																	
 															    </div>
 																<hr>  
 																<br>
-																<button type="button" class="btn waves-effect waves-light btn-outline-success float-right pequeno" style="border-radius: 25px;" name="btAddClientesAfetado" id="btAddClientesAfetado" onclick="mudancaPadrao.salvarClientesAfetado();">Add</button>
-																<button type="button" class="btn waves-effect waves-light btn-outline-success float-right pequeno" style="border-radius: 25px;" name="btLimparAddClientesAfetado" id="btLimparAddClientesAfetado" onclick="mudancaPadrao.limparListaClientesAfetados();">Limpar Lista</button>
+																<button type="button" class="btn waves-effect waves-light btn-outline-success float-right pequeno" style="border-radius: 25px; margin-right: 15px;" name="btAddClientesAfetado" id="btAddClientesAfetado" onclick="mudancaPadrao.salvarClientesAfetado();">Add</button>
+																<button type="button" class="btn waves-effect waves-light btn-outline-success float-right pequeno" style="border-radius: 25px; margin-right: 15px;" name="btLimparAddClientesAfetado" id="btLimparAddClientesAfetado" onclick="mudancaPadrao.limparListaClientesAfetados();">Limpar Lista</button>
 											                </div>
 													    </div>
 											        </div>
@@ -328,10 +344,11 @@
 																	<table class="table table-striped table-hover table-sm table-bordered table-responsive-sm" id="tabelaClienteAfetado">
 																		  <thead>
 																		    <tr class="table-primary">
-																		      <th scope="col" style="vertical-align: middle;color: white"                    >ID Cliente    </th>
-																		      <th scope="col" style="vertical-align: middle;color: white"                    >Cliente       </th>
-																		      <th scope="col" style="vertical-align: middle;color: white"                    >Ciclo Updadate</th>
-																		      <th scope="col" style="text-align: center; vertical-align: middle;color: white">Delete        </th>
+																		      <th scope="col" style="text-align: center; vertical-align: middle;color: white">ID Cliente</th>
+																		      <th scope="col" style="vertical-align: middle;color: white"                    >Cliente   </th>
+																		      <th scope="col" style="vertical-align: middle;color: white"                    >Alias     </th>
+																		      <th scope="col" style="vertical-align: middle;color: white"                    >Grupo     </th>
+																		      <th scope="col" style="text-align: center; vertical-align: middle;color: white">Delete    </th>
 																		    </tr>
 																		  </thead>
 																		<tbody id="tbClienteAfetado">

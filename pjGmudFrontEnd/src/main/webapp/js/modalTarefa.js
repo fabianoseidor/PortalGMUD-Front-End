@@ -146,7 +146,7 @@
         let imgcarregar = document.createElement('img');
         imgcarregar.src = this.getContextPath() +'/imagens/mostrar-propriedade.-48.png';
         imgcarregar.setAttribute('onclick','getTarefa( ' +  tarefas[i].id_atividade_mudanca + ' )');
-        imgcarregar.setAttribute('cursor', 'pointer' );
+		imgcarregar.setAttribute('style', 'cursor:pointer;' );
         imgcarregar.setAttribute('data-toggle'   , 'tooltip'            );
         imgcarregar.setAttribute('data-placement', 'top'                );
         imgcarregar.setAttribute('title'         , 'Visualizar Tarefa!' ); 

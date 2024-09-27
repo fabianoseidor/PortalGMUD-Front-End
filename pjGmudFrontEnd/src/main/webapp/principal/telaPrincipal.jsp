@@ -137,42 +137,62 @@
 											<div class="btn-group" role="group" aria-label="Grupo de botões com dropdown aninhado">
 											
 											  <div class="btn-group" role="group">
-											    <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											    <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle" style="border-radius: 25px; margin-right: 15px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											      Abertura de GMUD
 											    </button>
-											    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+											    <div class="dropdown-menu" style="border-radius: 25px;" aria-labelledby="btnGroupDrop1">
 											      <a class="dropdown-item" href="<%= request.getContextPath() %>/cadastro/cadNormal.jsp"         >Normal               </a>
+											      <hr class="dropdown-divider">
 											      <a class="dropdown-item" href="<%= request.getContextPath() %>/cadastro/cadEmergencial.jsp"    >Emergencial          </a>
+											      <hr class="dropdown-divider">
 											      <a class="dropdown-item" href="<%= request.getContextPath() %>/cadastro/cadPadrao.jsp"         >Padrão               </a>
 											    </div>
 											  </div>
 											<!--    <button type="button" class="btn btn-outline-primary">GUMD Abertas</button> -->
-											  <button type="button" class="btn btn-outline-primary" onclick="goToPesquisa();">GUMD Pesquisar</button>
-											  <button type="button" class="btn btn-outline-primary" onclick="goToAprovacao();">Aprovação GUMD</button>
+											  <button type="button" class="btn btn-outline-primary" style="border-radius: 25px; margin-right: 15px;" onclick="goToPesquisa();">GUMD Pesquisar</button>
+											  <button type="button" class="btn btn-outline-primary" style="border-radius: 25px; margin-right: 15px;" onclick="goToAprovacao();">Aprovação GUMD</button>
 
 											  <div class="btn-group" role="group">
-											    <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											      Cad. Categoria Padrão 
+											    <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle" style="border-radius: 25px; margin-right: 15px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											      Cadastro  
 											    </button>
-											    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-											      <a class="dropdown-item" href="<%= request.getContextPath() %>/cadastro/cadCategoriaPadrao.jsp">Cadastro</a>
-											      <a class="dropdown-item" href="<%= request.getContextPath() %>/manutencao/manutCategoriaPadrao.jsp">Manutenção</a>
+											    <div class="dropdown-menu" style="border-radius: 25px;" aria-labelledby="btnGroupDrop1">
+											      <a class="dropdown-item" href="<%= request.getContextPath() %>/cadastro/cadCategoriaPadrao.jsp"    >Cadastro Categoria Padrão   </a>
+											      <a class="dropdown-item" href="<%= request.getContextPath() %>/manutencao/manutCategoriaPadrao.jsp">Manutenção Categoria Padrão </a>
+											      <hr class="dropdown-divider">
+											      <a class="dropdown-item" href="<%= request.getContextPath() %>/cadastro/cadGrupoClientes.jsp"      >Cadastro Grupo de Clientes  </a>
+											      <a class="dropdown-item" href="<%= request.getContextPath() %>/cadastro/cadItemGrupoClientes.jsp"  >Cadastro de Cliente no Grupo</a>
 											    </div>
 											  </div>
 
 											  <div class="btn-group" role="group">
-											    <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											    <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle" style="border-radius: 25px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											      Tarefas 
 											    </button>
-											    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-											      <a class="dropdown-item" href="<%= request.getContextPath() %>/manutencao/manutTarefas.jsp">Tarefa por Responsável</a>
+											    <div class="dropdown-menu" style="border-radius: 25px;" aria-labelledby="btnGroupDrop1">
+											      <a class="dropdown-item"  href="<%= request.getContextPath() %>/manutencao/manutTarefas.jsp">Tarefa por Responsável</a>
 											    </div>
 											  </div>
+											  
+											  
+											  
+											  
+											  
+											  
+											  
+											  
 											</div>
+											
+											
+											
+											
+											
+											
 							           </div>
                                      </form>
                                  </div>
                               </div>
+
                               <br>
                               <br>
                               

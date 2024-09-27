@@ -178,6 +178,7 @@ class CategoriaPadrao{
             
             let imgDelete = document.createElement('img');
             imgDelete.src = this.getContextPath() +'/imagens/delete-40.png';
+			imgDelete.setAttribute('style', 'cursor:pointer;' );
             imgDelete.setAttribute('onclick','categoriaPadraoClass.deleteItemCatPadrao( ' +  listaItemCatPadrao[i].idItemCatPadrao + ' )');
             td_delete.appendChild(imgDelete);
             

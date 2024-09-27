@@ -121,6 +121,7 @@ async function funcListaCatPadraoPaginacao( pag ) {
 				imgEdit.src = getContextPath() +'/imagens/edit-20.png';
 				let funcEdit = "editCatPadrao( " + JSON.stringify( data2[i] ) + ")";				
 				imgEdit.setAttribute('onclick', funcEdit);
+				imgEdit.setAttribute('style', 'cursor:pointer;' );
 				imgEdit.setAttribute('data-toggle', 'tooltip' );
 				imgEdit.setAttribute('data-placement', 'top' );
 				imgEdit.setAttribute('title', 'Ir para o modulo "Edição!"' );
@@ -130,6 +131,7 @@ async function funcListaCatPadraoPaginacao( pag ) {
 				// Botao Delete
 				let imgDelete = document.createElement('img');
 				imgDelete.src = getContextPath() +'/imagens/delete-20.png';
+				imgDelete.setAttribute('style', 'cursor:pointer;' );
 				let funcdelete = "deleteCatPadrao( " + data2[i].id_categoria_padrao + ")";
 				imgDelete.setAttribute('onclick', funcdelete );
 				imgDelete.setAttribute('data-toggle', 'tooltip' );
@@ -192,7 +194,7 @@ async function deleteCatPadrao( id ){
 		 Swal.fire({
 			   title: "Manutenção Cat. Padrão",
 			   text : data2,
-			   icon : "Categoria Padrão removido com sucesso!",
+			   icon : "success",
 			   target: document.getElementById("modalFinalizarGMUD"),
 			   showCancelButton: false,
 			   confirmButtonColor: "#3085d6",
@@ -328,6 +330,7 @@ async function deleteCatPadrao( id ){
 		// Botao Editar
 		let imgEdit = document.createElement('img');
 		imgEdit.src = getContextPath() +'/imagens/edit-20.png';
+		imgEdit.setAttribute('style', 'cursor:pointer;' );
 		let funcEdit = "editItemCatPadrao( " + JSON.stringify( listaItemCatPadrao[i] ) + ")";				
 		imgEdit.setAttribute('onclick', funcEdit);
 		imgEdit.setAttribute('data-toggle', 'tooltip' );
@@ -339,6 +342,7 @@ async function deleteCatPadrao( id ){
 		// Botao Delete
 		let imgDelete = document.createElement('img');
 		imgDelete.src = getContextPath() +'/imagens/delete-20.png';
+		imgDelete.setAttribute('style', 'cursor:pointer;' );
 		let funcdelete = "deleteItemCategoria( " + listaItemCatPadrao[i].id_itens_cat_padrao + ")";
 		imgDelete.setAttribute('onclick', funcdelete );
 		imgDelete.setAttribute('data-toggle', 'tooltip' );

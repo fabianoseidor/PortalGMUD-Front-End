@@ -285,6 +285,7 @@
 					// Preenche a tabela com os valores retornados da API
 		            let imgdetalhe = document.createElement('img');
 		            imgdetalhe.src = getContextPath() +'/imagens/mostrar-propriedade.-48.png';
+		            imgdetalhe.setAttribute('style', 'cursor:pointer;' );
 		            td_detalhe_mudanca.appendChild(imgdetalhe);
 		            td_detalhe_mudanca.classList.add('center');
 		            imgdetalhe.setAttribute('data-toggle', 'tooltip' );
@@ -307,6 +308,7 @@
 
 		            let imgliberar = document.createElement('img');
 		            imgliberar.src = getContextPath() +'/imagens/aprovado-48.png';
+		            imgliberar.setAttribute('style', 'cursor:pointer;' );
 		            let funcLib = "atualizaStatus( " + response[i].id_lista_aprovadores + ", " + response[i].id_mudanca + " )";
                     td_aprovar.appendChild(imgliberar);
                     td_aprovar.classList.add('center');
@@ -314,6 +316,7 @@
                     
 		            let imgreprovar = document.createElement('img');
 		            imgreprovar.src = getContextPath() +'/imagens/polegares-para-baixo-40.png';
+		            imgreprovar.setAttribute('style', 'cursor:pointer;' );
 		            let funcLibRepro = "reprovacaoGMUD( " + response[i].id_lista_aprovadores + ", " + response[i].id_mudanca + " )";
                     td_reprovar.appendChild(imgreprovar);
                     td_reprovar.classList.add('center');

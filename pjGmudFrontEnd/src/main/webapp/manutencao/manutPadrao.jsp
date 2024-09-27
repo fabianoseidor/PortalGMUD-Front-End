@@ -253,8 +253,46 @@
 										        </div>
 										    </div>
 										 </div>
+										 
+										 
+										 
+										 
+                                          <!-- ##################################################################################### -->
+                                          <!--          Etapa com info. dos Clientes afetados pela GMUD                              -->
+                                          <!-- ##################################################################################### -->                                                                                                                            
+										  <!-- Tabela com as informacoes do Recursos a serem cadastrasdos -->                       
+										  <div class="row">
+											<div class="col-sm-12">
+												<!-- Basic Form Inputs card start -->
+												<div class="card">
+													<div class="card-block">
+							                            <h5 class="card-header border-primary">Lista dos Clientes Afetafos pela Mudança</h5><hr><br>
+														<div style="height: 150px; overflow: scroll;">
+															<table class="table table-striped table-hover table-sm table-bordered table-responsive-sm" id="tabelabClienteAfetados">
+																  <thead>
+																    <tr>
+																      <th scope="col">ID  </th>
+																      <th scope="col">Cliente        </th>
+																      <th scope="col">Alias       </th>
+																    </tr>
+																  </thead>
+																<tbody id="tbClienteAfetados">
+							
+																</tbody>
+															</table>
+														</div>
+							
+													</div>
+												</div>
+											</div>
+										  </div>
+										 
+										 
+										 
+										 
+										 
                                          <!-- ##################################################################################### -->
-                                         <!--          Etapa Plano de execução da Mudança                                           -->
+                                         <!--              Etapa Listar tarefa da Mudança                                           -->
                                          <!-- ##################################################################################### -->                                                                                
                                          <div class="row">
 											<div class="col-sm-12">
@@ -731,6 +769,7 @@
             
             let imgcarregar = document.createElement('img');
             imgcarregar.src = getContextPath() +'/imagens/mostrar-propriedade.-48.png';
+            imgcarregar.setAttribute('style', 'cursor:pointer;' );
             imgcarregar.setAttribute('onclick','getTarefa( ' +  tarefas[i].id_atividade_mudanca + ' )');
             td_carregar.appendChild(imgcarregar);
             td_carregar.classList.add('center');
@@ -801,6 +840,9 @@
 	$("#reportFinal"             ).val( mudanca.reportFinal                             );
     /////////////////////////////////////////////////////////////////////////////////////////////
     
+	// Info com a lista de clientes afetados pela mudanca
+	listaClientesAfetados( mudanca.mudancaClientesAfetados  );
+
     listaTabelaTarefa( mudanca.atividadesMudanca/*, mudanca.login_user*/ );
     
     listaArquivosAnexados( mudanca.arquivosMudanca );
@@ -814,9 +856,28 @@
     }else {
     	$('#btFecharMudanca').attr('disabled', true);
     }
-    
-	
+   	
   }
+
+  function listaClientesAfetados( clientesAfetados ) {
+		let tbody = document.getElementById('tbClienteAfetados');
+		tbody.innerText = '';
+		for(let i = 0; i < clientesAfetados.length; i++){
+			// Cria as linhas
+          let tr = tbody.insertRow();
+          
+          // Crias as celulas
+          let td_idCliente = tr.insertCell();
+          let td_cliente   = tr.insertCell();
+          let td_alias     = tr.insertCell();
+
+          // Inseri os valores do objeto nas celulas
+          td_idCliente.innerText = ( clientesAfetados[i].clientesAfetados.id_clientes_af !== undefined ? clientesAfetados[i].clientesAfetados.id_clientes_af : '' );
+          td_cliente.innerText   = ( clientesAfetados[i].clientesAfetados.nome_cliente   !== undefined ? clientesAfetados[i].clientesAfetados.nome_cliente   : '' );
+          td_alias.innerText     = ( clientesAfetados[i].clientesAfetados.alias          !== undefined ? clientesAfetados[i].clientesAfetados.alias          : '' );
+		}
+}
+  
   
   function formatstatusGmud( status ) {
 	  switch( status ) {

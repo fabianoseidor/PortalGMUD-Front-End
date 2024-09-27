@@ -102,10 +102,10 @@
           text-align: center;
        }
        
-       
+  /*     
       tr{cursor: pointer; transition: all .25s ease-in-out}
       .selected{background-color: red; font-weight: bold; color: #fff;}
-  
+  */
 	.box_dark{
 	  position: fixed;
 	  left: 0;
@@ -268,13 +268,48 @@
 										            </div>
 										        </div>
 										    </div>
-										 </div>
+										  </div>
                                           
-                                         <!-- ##################################################################################### -->
-                                         <!--          Etapa Plano de execução da Mudança                                           -->
-                                         <!-- ##################################################################################### -->                                                                                
                                           
-                                         <div class="row">
+                                          
+                                          <!-- ##################################################################################### -->
+                                          <!--          Etapa com info. dos Clientes afetados pela GMUD                              -->
+                                          <!-- ##################################################################################### -->                                                                                                                            
+										  <!-- Tabela com as informacoes do Recursos a serem cadastrasdos -->                       
+										  <div class="row">
+											<div class="col-sm-12">
+												<!-- Basic Form Inputs card start -->
+												<div class="card">
+													<div class="card-block">
+							                            <h5 class="card-header border-primary">Lista dos Clientes Afetafos pela Mudança</h5><hr><br>
+														<div style="height: 150px; overflow: scroll;">
+															<table class="table table-striped table-hover table-sm table-bordered table-responsive-sm" id="tabelabClienteAfetados">
+																  <thead>
+																    <tr>
+																      <th scope="col">ID  </th>
+																      <th scope="col">Cliente        </th>
+																      <th scope="col">Alias       </th>
+																    </tr>
+																  </thead>
+																<tbody id="tbClienteAfetados">
+							
+																</tbody>
+															</table>
+														</div>
+							
+													</div>
+												</div>
+											</div>
+										  </div>
+                                          
+                                          
+                                          
+                                          
+                                          <!-- ##################################################################################### -->
+                                          <!--          Etapa Plano de execução da Mudança                                           -->
+                                          <!-- ##################################################################################### -->                                                                                
+                                          
+                                          <div class="row">
 											<div class="col-sm-12">
 												<div class="card">
 													<div class="card-block">
@@ -339,10 +374,10 @@
 									                </div>
 											    </div>
 									        </div>
-									     </div>
-
-									     <!-- Tabela com as informacoes do Recursos a serem cadastrasdos -->                       
-										 <div class="row">
+									      </div>
+ 
+									      <!-- Tabela com as informacoes do Recursos a serem cadastrasdos -->                       
+										  <div class="row">
 											<div class="col-sm-12">
 												<!-- Basic Form Inputs card start -->
 												<div class="card">
@@ -371,9 +406,9 @@
 													</div>
 												</div>
 											</div>
-										 </div>
+										  </div>
 										
-                                         <div class="row">
+                                          <div class="row">
 										    <div class="col-sm-12">
 											   <div class="card">
 												  <div class="card-block">
@@ -820,8 +855,7 @@
             imgcarregar.setAttribute('onclick','getTarefa( ' +  tarefas[i].id_atividade_mudanca + ' )');
             td_carregar.appendChild(imgcarregar);
             td_carregar.classList.add('center');
-            imgcarregar.setAttribute( 'cursor', 'pointer' );
-
+            imgcarregar.setAttribute('style', 'cursor:pointer;' );
             imgcarregar.setAttribute('data-toggle'   , 'tooltip'            );
             imgcarregar.setAttribute('data-placement', 'top'                );
             imgcarregar.setAttribute('title'         , 'Visualizar Tarefa!' );              
@@ -895,8 +929,11 @@
     // Informacoes das Acoes Finais na Modal
     $("#planoRetornoFechamento"  ).val( mudanca.acaoPosAtividade.plano_teste            );
 	$("#planoTestesFechamento"   ).val( mudanca.acaoPosAtividade.plano_rollback         );
+	
+	// Info com a lista de clientes afetados pela mudanca
+	listaClientesAfetados( mudanca.mudancaClientesAfetados  );
     
-    listaTabelaTarefa( mudanca.atividadesMudanca/*, mudanca.login_user*/ );
+	listaTabelaTarefa( mudanca.atividadesMudanca/*, mudanca.login_user*/ );
     
     listaArquivosAnexados( mudanca.arquivosMudanca );
     
@@ -911,6 +948,26 @@
     }
     
 	
+  }
+  
+  
+  function listaClientesAfetados( clientesAfetados ) {
+		let tbody = document.getElementById('tbClienteAfetados');
+		tbody.innerText = '';
+		for(let i = 0; i < clientesAfetados.length; i++){
+			// Cria as linhas
+            let tr = tbody.insertRow();
+            
+            // Crias as celulas
+            let td_idCliente = tr.insertCell();
+            let td_cliente   = tr.insertCell();
+            let td_alias     = tr.insertCell();
+
+            // Inseri os valores do objeto nas celulas
+            td_idCliente.innerText = ( clientesAfetados[i].clientesAfetados.id_clientes_af !== undefined ? clientesAfetados[i].clientesAfetados.id_clientes_af : '' );
+            td_cliente.innerText   = ( clientesAfetados[i].clientesAfetados.nome_cliente   !== undefined ? clientesAfetados[i].clientesAfetados.nome_cliente   : '' );
+            td_alias.innerText     = ( clientesAfetados[i].clientesAfetados.alias          !== undefined ? clientesAfetados[i].clientesAfetados.alias          : '' );
+		}
   }
   
   function formatstatusGmud( status ) {

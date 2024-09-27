@@ -121,9 +121,10 @@ class MudancaPadrao{
 	lerDadosClientesAfetado(){
 		let clientesAfetado = {};
 		clientesAfetado.idCliAfetados = this.idCliAfetados;
-		clientesAfetado.idClienteAfet = document.getElementById   ( 'idClienteAfetado'   ).value;
-		clientesAfetado.clienteAfet   = document.getElementById   ( 'nomeClienteAfetado' ).value;
-		clientesAfetado.cicloUpdate   = '';
+		clientesAfetado.idClienteAfet = document.getElementById( 'idClienteAfetado'  ).value;
+		clientesAfetado.clienteAfet   = document.getElementById( 'nomeClienteAfetado').value;
+		clientesAfetado.alias         = document.getElementById( 'nomeClienteAlias'  ).value;
+		clientesAfetado.nomeGrupo     = 'Insert Manual';
 		return clientesAfetado;
 	}
 	/******************************************************************/
@@ -163,28 +164,31 @@ class MudancaPadrao{
 			
 	        let td_idClienteAfetShow = tr.insertCell();
 	        let td_clienteAfetShow   = tr.insertCell();
-			let td_cicloUpdateShow   = tr.insertCell();
+			let td_aliasShow         = tr.insertCell();
+			let td_nomeGrupoShow     = tr.insertCell();
 	        let td_delete            = tr.insertCell();
 	        
 	         // Inseri os valores do objeto nas celulas
 	        td_idClienteAfetShow.innerText = ( listaClientesAfetados[i].idClienteAfet !== undefined ? listaClientesAfetados[i].idClienteAfet : ' - ' );
 	        td_clienteAfetShow.innerText   = ( listaClientesAfetados[i].clienteAfet   !== undefined ? listaClientesAfetados[i].clienteAfet   : ' - ' );
-			td_cicloUpdateShow.innerText   = ( listaClientesAfetados[i].cicloUpdate   !== ''        ? listaClientesAfetados[i].cicloUpdate   : ' - ' );
+			td_aliasShow.innerText         = ( listaClientesAfetados[i].alias         !== undefined ? listaClientesAfetados[i].alias         : ' - ' );
+			td_nomeGrupoShow.innerText     = ( listaClientesAfetados[i].nomeGrupo     !== undefined ? listaClientesAfetados[i].nomeGrupo     : ' - ' );
 			/////////////////////////////////////////////////////////////////
 			td_idClienteAfetShow.setAttribute('style', 'vertical-align: middle' );
 			td_clienteAfetShow.setAttribute  ('style', 'vertical-align: middle' );
+			td_aliasShow.setAttribute        ('style', 'vertical-align: middle' );
+			td_nomeGrupoShow.setAttribute    ('style', 'vertical-align: middle' );
 			td_delete.setAttribute           ('style', 'vertical-align: middle' );
-			
-			if(listaClientesAfetados[i].cicloUpdate   === '' ) td_cicloUpdateShow.setAttribute('style', 'vertical-align: middle; text-align:center' );
-			else td_cicloUpdateShow.setAttribute('style', 'vertical-align: middle' );
 			/////////////////////////////////////////////////////////////////
 	        
 	        let imgDelete = document.createElement('img');
+			imgDelete.setAttribute('style', 'cursor:pointer;' );
 	        imgDelete.src = this.getContextPath() +'/imagens/delete-40.png';
-	        imgDelete.setAttribute('onclick','mudancaNormal.deleteClientesAfetado( ' +  listaClientesAfetados[i].idCliAfetados + ' )');
+	        imgDelete.setAttribute('onclick','mudancaPadrao.deleteClientesAfetado( ' +  listaClientesAfetados[i].idCliAfetados + ' )');
 	        td_delete.appendChild(imgDelete);
 	        
-	        td_delete.classList.add('center');
+			td_delete.setAttribute('style', 'text-align: center; vertical-align: middle;' );
+			td_idClienteAfetShow.setAttribute('style', 'text-align: center; vertical-align: middle;' );
 	    }
 	}
 	/******************************************************************/
@@ -222,8 +226,12 @@ class MudancaPadrao{
 	LimparTelaClientesAfetados() {
 
 		$('#selectClientesAfetados').get(0).selectedIndex = 0;
+		$('#selectclienteAlias'    ).get(0).selectedIndex = 0;
+		$('#grupoCliente'          ).get(0).selectedIndex = 0;
 		$("#idClienteAfetado"      ).val("");
 		$("#nomeClienteAfetado"    ).val("");
+		$("#nomeClienteAlias"      ).val("");
+		
 		
     }
  	
@@ -481,6 +489,7 @@ class MudancaPadrao{
             
             let imgDelete = document.createElement('img');
             imgDelete.src = this.getContextPath() +'/imagens/delete-40.png';
+			imgDelete.setAttribute('style', 'cursor:pointer;' );
             imgDelete.setAttribute('onclick','mudancaPadrao.deleteArquivo( ' +  listaArquivo[i].idArqsMudanca + ' )');
             td_delete.appendChild(imgDelete);
             
