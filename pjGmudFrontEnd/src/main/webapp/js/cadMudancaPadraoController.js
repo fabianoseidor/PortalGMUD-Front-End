@@ -135,6 +135,15 @@
 		return diferencaEmMinutos;
 	}	    
 
+	function limpaDatas(){
+		$("#dataExecucao").val('');
+		$("#horarioInicio").val('');
+		$("#dataPrevistaConclusao").val('');
+		$("#HorarioPrevistoConclusao").val('');
+	}
+	
+	
+	
 	function validaDateExecucao(){
 //		var strData = "28/02/2015";
 		var strData = document.getElementById('dataExecucao').value;

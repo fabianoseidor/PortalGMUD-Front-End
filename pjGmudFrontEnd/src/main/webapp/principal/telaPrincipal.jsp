@@ -126,8 +126,9 @@
                            <div class="page-body">
                               <div class="row">
                                  <div class="col-sm-12">
-								    <!-- Basic Form Inputs card start -->
-                                    <form class="form-material" action="" method="post" id="formPrincipal" >
+								    <!-- Basic Form Inputs card start 								    
+								    <form class="form-material" action="" method="post" id="formPrincipal" > -->
+                                    <form class="form-material" action="<%= request.getContextPath() %>/ServletLogin" method="post" id="formPrincipal" >
 
                                        <!-- URL da base da API Base TST ou PRD  -->
                                        <input type="hidden"  name="urlAPI" id="urlAPI" value="<%=session.getAttribute("urlAPI")%>">
@@ -173,21 +174,7 @@
 											      <a class="dropdown-item"  href="<%= request.getContextPath() %>/manutencao/manutTarefas.jsp">Tarefa por Responsável</a>
 											    </div>
 											  </div>
-											  
-											  
-											  
-											  
-											  
-											  
-											  
-											  
 											</div>
-											
-											
-											
-											
-											
-											
 							           </div>
                                      </form>
                                  </div>

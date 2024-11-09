@@ -170,7 +170,12 @@
 											<div class="col-sm-12">
 												<div class="card">
 													<div class="card-block">
-													    <h5 class="card-header border-primary">Dados de Impacto da Mudança</h5><hr><br>
+													    <h5 class="card-header border-primary">
+													        Dados de Impacto da Mudança
+													        <button type="button" class="btn waves-effect waves-light btn-outline-success float-right pequeno" style="border-radius: 25px;" name="btEmExecucao" id="btEmExecucao" disabled="disabled">Em Execução</button>
+													    </h5>
+													    <hr>
+													    <br>
 													    
 			                                            <div class="form-row">
 															<div class="form-group form-default form-static-label col-md-2 mb-6">
@@ -286,11 +291,7 @@
 												</div>
 											</div>
 										  </div>
-										 
-										 
-										 
-										 
-										 
+
                                          <!-- ##################################################################################### -->
                                          <!--              Etapa Listar tarefa da Mudança                                           -->
                                          <!-- ##################################################################################### -->                                                                                

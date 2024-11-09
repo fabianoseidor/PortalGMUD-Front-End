@@ -29,7 +29,7 @@ public class FilterAutenticacao extends HttpFilter implements Filter {
 
 	public void destroy() {
 		try {
-			connection.close();
+			if( connection != null ) connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -38,28 +38,33 @@ public class FilterAutenticacao extends HttpFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		try {
 			HttpServletRequest req = (HttpServletRequest) request;
-			HttpSession session = req.getSession();
+			HttpSession session    = req.getSession();			
+			InetAddress ia         = InetAddress.getLocalHost();
+	        String node            = ia.getHostName();
+			String usuarioLogado   = (String) session.getAttribute("usuario");
+			String urlParaAutent   = req.getServletPath(); // URL que esta sendo acessada.
+			String statusSessao  = (String) session.getAttribute("StatusSessao");
 			
-			String urlPortalLogin = "";
-	        InetAddress ia = InetAddress.getLocalHost();
-	        String node = ia.getHostName();
-	        if(node.equals("PIBASTIANDEV"))urlPortalLogin = "http://localhost:8080/pjLoginUnificado/ServletLogin";
-	        else urlPortalLogin = "http://10.154.20.134:8080/loginunificado/ServletLogin";
-
-			String usuarioLogado = (String) session.getAttribute("usuario");
-			String urlParaAutent = req.getServletPath(); // URL que esta sendo acessada.
-			urlPortalLogin = urlPortalLogin + "?urlAplic=" + urlParaAutent + "&aplic=2"; // 2 ==> Defini a Aplicacao como GMUD			
-			// Validar se esta logado, se nao redireciona para a tela de login
 			if( usuarioLogado == null && !urlParaAutent.equalsIgnoreCase("/principal/ServletLogin") ) {
-//				RequestDispatcher redireciona = request.getRequestDispatcher(urlPortalLogin);
-//				redireciona.forward(request, response);
-				
-				request.setAttribute("msg", "Por favor, realizar o login!");
-
+				request.setAttribute("msg", "Favor efetura Login!");
+				String urlLonginUnificado = "";
+		        if(node.equals("PIBASTIANDEV")) urlLonginUnificado = "http://localhost:8080/pjLoginUnificado/index.jsp";
+		        else urlLonginUnificado       = "http://10.154.20.134:8080/loginunificado/index.jsp";
+		        req.getSession().invalidate();
  				HttpServletResponse resp = (HttpServletResponse) response;	
- 				resp.sendRedirect(urlPortalLogin);
+ 				resp.sendRedirect(urlLonginUnificado);
 				return ;// para a execucao e redireciona para o login.
-
+			}else if( usuarioLogado == null ) {
+				request.setAttribute("msg", "Favor efetura Login!");
+				String urlLonginUnificado = "";
+		        if(node.equals("PIBASTIANDEV")) urlLonginUnificado = "http://localhost:8080/pjLoginUnificado/index.jsp";
+		        else urlLonginUnificado       = "http://10.154.20.134:8080/loginunificado/index.jsp";
+		        
+ 				HttpServletResponse resp = (HttpServletResponse) response;	
+ 				resp.sendRedirect(urlLonginUnificado);
+				return ;// para a execucao e redireciona para o login.
+			}else if( usuarioLogado != null && !usuarioLogado.isEmpty() && statusSessao != null && !statusSessao.isEmpty() && statusSessao.equals("PrimeiroAcessoOK") ) {
+				chain.doFilter(request, response);
 			}else {
 	    		chain.doFilter(request, response);
 			}

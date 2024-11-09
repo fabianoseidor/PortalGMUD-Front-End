@@ -424,38 +424,63 @@
 		});
   }
   
-  function reprovacaoGMUD( idListaAprovadores, idMudanca ){
-		let urlBase = document.getElementById('urlAPI').value;
-		let urlAPI  = urlBase + 'reprovacaoGMUD/';
-		showLoading();
-		
-		$.ajax({
-			method : "POST",
-//			url : "http://localhost:8090/PortalMudanca/reprovacaoGMUD/" + idListaAprovadores + "/" + idMudanca,
-			url : urlBase + idListaAprovadores + "/" + idMudanca,
-			contentType : "application/json; charset=utf-8",
-			success : function(response) {
+  async function reprovacaoGMUD( idListaAprovadores, idMudanca ){
+	  
+	  const { value: text } = await Swal.fire({
+		  input: "textarea",
+		//  inputLabel: "Motivo reprovação!",
+		  title: "Motivo reprovação!",
+		  inputPlaceholder: "Motivo reprovação...",
+		  inputAttributes: {
+		    "aria-label": "Motivo reprovação!"
+		  },
+		  showCancelButton: true,
+		  confirmButtonText: "Reprovar",
+		  denyButtonText   : "Cancelar"
 
-				console.log("response: " + response);
-				
-				let msg = "";
-				if( response === 'sucesso' ){
-					msg = "Status da GMUD " + idMudanca + ", GMUD foi Rejeitada e Cancelada!";
-				    MensagemConfimacao("warning","Atualização Status", msg);
-				}else {
-					msg = "ERRO: Atualização do Status da GMUD " + idMudanca + "!";
-					MensagemConfimacao("error","Atualização Status", msg);
-                   }
-				
-				ListarGemuds();
-				hideLoading();
-			}
-		}).fail(function(xhr, status, errorThrown) {
-			//alert("Erro ao salvar usuario: " + xhr.responseText);
-			hideLoading();
-			MensagemConfimacao( "error", "Status GMUD", "Erro ao Reprovar GMUD: " + xhr.responseText) ; 
 		});
-		
+		if (text) {
+		//  Swal.fire(text);
+			let urlBase = document.getElementById('urlAPI').value;
+			let urlAPI  = urlBase + 'reprovacaoGMUD/';
+			showLoading();
+			
+			let dados = {
+					motivo_rejeicao      : text,
+					id_lista_aprovadores : idListaAprovadores                   ,
+					id_mudanca           : idMudanca
+			};  
+			
+			$.ajax({
+				method : "POST",
+//				url : "http://localhost:8090/PortalMudanca/reprovacaoGMUD/" + idListaAprovadores + "/" + idMudanca,
+//				url : urlBase + idListaAprovadores + "/" + idMudanca,
+				url : urlAPI,
+				contentType : "application/json; charset=utf-8",
+				data        : JSON.stringify(dados)            ,
+				success : function(response) {
+
+		//			console.log("response: " + response);
+					
+					let msg = "";
+					if( response === 'sucesso' ){
+						msg = "Status da GMUD " + idMudanca + ", GMUD foi Rejeitada e Cancelada!";
+					    MensagemConfimacao("warning","Atualização Status", msg);
+					}else {
+						msg = "ERRO: Atualização do Status da GMUD " + idMudanca + "!";
+						MensagemConfimacao("error","Atualização Status", msg);
+	                   }
+					
+					ListarGemuds();
+					hideLoading();
+				}
+			}).fail(function(xhr, status, errorThrown) {
+				//alert("Erro ao salvar usuario: " + xhr.responseText);
+				hideLoading();
+				MensagemConfimacao( "error", "Status GMUD", "Erro ao Reprovar GMUD: " + xhr.responseText) ; 
+			});
+
+		}
     }
 
    

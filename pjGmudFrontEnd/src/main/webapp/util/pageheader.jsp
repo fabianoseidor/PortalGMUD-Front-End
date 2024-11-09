@@ -15,7 +15,8 @@
 								  </div>
 								  <div  class="col-lg-8">
 								    <h5 class="text-right" style="color: white;">
-								        <a href="<%= session.getAttribute("urlAPIInicioPortalLogin")%>" class="waves-effect waves-dark" style="margin-top: 10px">               
+								            <a href="<%= request.getContextPath() %>/ServletLogin?acao=manuLoginUnificado" class="waves-effect waves-dark" style="margin-top: 10px">
+								     <!--     <a href="<%= session.getAttribute("urlAPIInicioPortalLogin")%>" class="waves-effect waves-dark" style="margin-top: 10px"> -->
                                             <span style="color: white;" class="pcoded-micon"><i class="ti-home"></i></span>
                                             <span style="color: white;" class="pcoded-mtext" data-i18n="nav.dash.main"><strong >home</strong> </span>
                                             <span style="color: white;" class="pcoded-mcaret"></span>

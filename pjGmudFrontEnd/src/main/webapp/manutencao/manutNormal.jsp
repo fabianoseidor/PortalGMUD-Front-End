@@ -897,6 +897,7 @@
             
             let imgcarregar = document.createElement('img');
             imgcarregar.src = getContextPath() +'/imagens/baixar-48.png';
+            imgcarregar.setAttribute('style', 'cursor:pointer;' );
             let funcDownload = "downloadBase64( '" + arquivosMudanca[i].arquivo  + "', '" 
                                                   + arquivosMudanca[i].nome_arq + "', '" 
                                                   + arquivosMudanca[i].tipo_Arq +"' )";
@@ -1358,7 +1359,7 @@
     	 
          const data1 = await fetch(url).then(response => response.json());
 
-         if( data1 > 0  ) throw 'Fecha todas as terefas, para fechar a GMUD!';
+         if( data1 > 0  ) throw 'Fecha todas as tarefas, para fechar a GMUD!';
 
          // Se todas as tarefas forem fechadas, executa o fechamento da GMUD
        	 let idMudancaTar = document.getElementById( 'idMudancaParametro'    ).value;

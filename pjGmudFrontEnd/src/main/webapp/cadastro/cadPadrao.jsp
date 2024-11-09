@@ -220,7 +220,7 @@
 																	
 																	<div class="form-group form-default form-static-label col-md-4 mb-4">
 																		<span  class="font-weight-bold font-italic" style="color: #708090">Categoria Padrão</span>
-																		<select style="color: #000000" name="categoriaPadrao" id="categoriaPadrao" class="form-control step_1_validar" onchange="getItemCategoriaPadrao(  );">
+																		<select style="color: #000000" name="categoriaPadrao" id="categoriaPadrao" class="form-control step_1_validar" onchange="getItemCategoriaPadrao(  );limpaDatas();">
 																			<option value="" disabled selected>[-Selecione-]</option>
 																		</select> 
 																	</div>
